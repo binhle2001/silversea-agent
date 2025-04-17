@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     image: silversea-chatbot
     container_name: silversea-chatbot
-    command: python main.py
+    command: uvicorn main:app --host 0.0.0.0 --port 8080
     ports:
       - 8080:8080
     restart: always
