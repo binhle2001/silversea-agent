@@ -1,0 +1,8 @@
+.venv/**
+.git/
+**/*/__pycache__/
+.venv
+image_temp.jpg
+**/.DS_Store
+**/__pycache__
+test.py

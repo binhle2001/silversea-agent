@@ -1,0 +1,14 @@
+sentence_transformers
+psycopg2-binary
+google-generativeai
+fastapi
+uvicorn
+pdfplumber
+python-docx
+python-pptx
+boto3
+beautifulsoup4
+google-generativeai
+python-multipart
+uvicorn
+websockets

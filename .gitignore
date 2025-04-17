@@ -1,0 +1,16 @@
+.venv
+EAC_API/.env
+**/.DS_Store
+**/__pycache__
+.env
+**/models/**
+test/*
+**/cache/**
+test.py
+**/model_trained/**
+ai_core/data*
+ai_core/domain.yml
+test**
+document
+silent-scholar-452803-i5-327f808bdab3.json
+silversea_agent_image.tar

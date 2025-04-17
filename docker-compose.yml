@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  silversea-chatbot:
+    build: .
+    platform: linux/amd64
+    image: silversea-chatbot
+    container_name: silversea-chatbot
+    command: python main.py
+    ports:
+      - 8080:8080
+    restart: always
