@@ -98,7 +98,10 @@ achievement (TEXT): Achievements or milestones the product has attained. Example
         cursor.execute(sql_query, [software_id])
         rows = cursor.fetchall()
         document_url = rows[0][0]
-        delete_file_s3(document_url)
+        try:
+            delete_file_s3(document_url)
+        except:
+            pass
         sofware_sql_query = "DELETE FROM software WHERE id = %s"
         feature_sql_query = "DELETE FROM software_feature WHERE software_id = %s"
         
