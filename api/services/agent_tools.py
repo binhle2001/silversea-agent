@@ -76,21 +76,21 @@ async def get_s3_bucket_api():
     return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_s3_bucket()})
 
 @router.get("/aws/billing")
-async def get_aws_billing_api(item: StartTime):
+async def get_aws_billing_api(start_time: str = Query(..., description="Start date in format yyyy-MM-dd")):
     try:
-        time = datetime.strptime(item.start_time, "%Y-%m-%d")
+        time = datetime.strptime(start_time, "%Y-%m-%d")
     except:
         return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content = {"message": "Valid format is: yyyy-MM-dd."})
-    return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_aws_billing(item.start_time)})
+    return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_aws_billing(start_time)})
 
 @router.get("/gcp/services")
 async def get_gcp_services_api():
     return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_services_in_use()})
 
 @router.get("/gcp/billing")
-async def get_gcp_billing(item: StartTime):
+async def get_gcp_billing(start_time: str = Query(..., description="Start date in format yyyy-MM-dd")):
     try:
-        time = datetime.strptime(item.start_time, "%Y-%m-%d")
+        time = datetime.strptime(start_time, "%Y-%m-%d")
     except:
         return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content = {"message": "Valid format is: yyyy-MM-dd."})
-    return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_billing(item.start_time)})
+    return JSONResponse(status_code=status.HTTP_200_OK, content = {"data": get_billing(start_time)})
