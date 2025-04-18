@@ -5,7 +5,7 @@ from api.helpers.aws_billing import get_aws_billing, get_s3_bucket
 from api.helpers.gcp_billing import get_billing, get_services_in_use
 from knowlegde.update_embedding import UpdateEmbedding
 from knowlegde.agent import Chat
-from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, status, File, UploadFile
+from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, status, File, UploadFile, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -16,22 +16,27 @@ class StartTime(BaseModel):
             "start_time": "2025/04/01"
         }
 
+class Name(BaseModel):
+    name: str = Field(examples="YYYY-MM-DD")
+    class Config:
+        schema_json_config = {
+            "name": "2025/04/01"
+        }
+
 router = APIRouter(
     prefix="/api/v1"
 )
 update_embedding = UpdateEmbedding()
 @router.websocket("/chat/ws")
-async def chat_websocket(websocket: WebSocket):
+async def chat_websocket(websocket: WebSocket, name: str = Query(...)):
     await websocket.accept()
-    chat_bot = Chat(customer_name="Lê Bình")
-
+    chat_bot = Chat(customer_name=name)
     try:
         while True:
             data = await websocket.receive_text()
             await chat_bot.chat(data, websocket)
-
     except WebSocketDisconnect:
-        print("Client đã ngắt kết nối.")
+        print(f"Client {name} đã ngắt kết nối.")
 
 @router.get("/ping")
 async def get_software():
