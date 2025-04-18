@@ -12,3 +12,10 @@ google-generativeai
 python-multipart
 uvicorn
 websockets
+google-api-python-client 
+google-auth 
+google-auth-httplib2 
+google-auth-oauthlib
+google-cloud-bigquery
+google-cloud-aiplatform
+

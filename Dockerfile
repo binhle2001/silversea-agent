@@ -13,9 +13,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # install dependencies
-COPY ./requirements.txt ./requirements.txt
 RUN pip install --user --upgrade pip
 RUN pip3 install --user torch==2.5.1+cu118 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+COPY ./requirements.txt ./requirements.txt
 RUN pip install --disable-pip-version-check --no-compile --user -r ./requirements.txt
 FROM --platform=linux/amd64 python:3.11-slim-bullseye AS BUILD-IMAGE
 COPY --from=COMPILE-IMAGE /root/.local /root/.local
