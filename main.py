@@ -28,7 +28,9 @@ app.middleware('http')(catch_exceptions_middleware)
 
 app.include_router(router)
 
+    
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, 
+                ssl_keyfile="key.pem", ssl_certfile="cert.pem")
     
