@@ -7,7 +7,7 @@ from api.helpers.gemini import model_extraction
 from api.helpers.push_file_to_bucket import  upload_to_s3, delete_file_s3
 class UpdateEmbedding:
     def __init__(self):
-        self.PROMPT_EXTRACT_FILE = """You are an advanced language model trained to convert unstructured data (pdf, docx, pptx) into structured data in JSON format. Please extract and transform the content from the following document into a JSON record suitable for a database that stores software product marketing materials. The JSON object should contain the following fields:
+        self.PROMPT_EXTRACT_FILE = """You are an advanced language model trained to convert unstructured data (pdf, docx, pptx) into structured data in JSON format. Please extract and transform the content from the following document into a JSON record suitable for a database that stores software product marketing materials. Perform the content extraction in Vietnamese. The JSON object should include the following fields:
 
 product_name (TEXT): The name of the product.
 
