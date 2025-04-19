@@ -139,12 +139,32 @@ achievement (TEXT): Achievements or milestones the product has attained. Example
         rows = cursor.fetchall()
         for row in rows:
             id, short_description, target_audience, problem_solved, benefits, industry_applications, scalability = row
-            short_description_embedding = model_embedding.encode(short_description).tolist()
-            target_audience_embedding = model_embedding.encode(target_audience).tolist()
-            problem_solved_embedding = model_embedding.encode(problem_solved).tolist()
-            benefits_embedding = model_embedding.encode(benefits).tolist()
-            industry_applications_embedding = model_embedding.encode(industry_applications).tolist()
-            scalability_embedding = model_embedding.encode(scalability).tolist()
+            if short_description is None:
+                short_description_embedding = None
+            else:
+                short_description_embedding = model_embedding.encode(short_description).tolist()
+            if target_audience is None:
+                target_audience_embedding = None
+            else:
+                target_audience_embedding = model_embedding.encode(target_audience).tolist()
+            if problem_solved is None:
+                problem_solved_embedding = None
+            else:
+                problem_solved_embedding = model_embedding.encode(problem_solved).tolist()
+            if benefits is None:
+                benefits_embedding = None
+            else:
+                benefits_embedding = model_embedding.encode(benefits).tolist()
+            if industry_applications is None:
+                industry_applications_embedding = None
+            else:
+                industry_applications_embedding = model_embedding.encode(industry_applications).tolist()
+            if scalability is None:
+                scalability_embedding = None
+            else:
+                scalability_embedding = model_embedding.encode(scalability).tolist()
+           
+
             software_sql_query = "UPDATE software SET short_description_embedding = %s, target_audience_embedding = %s, problem_solved_embedding = %s, benefits_embedding = %s, industry_applications_embedding = %s, scalability_embedding = %s, ai_processed = %s WHERE id = %s"
             software_params = (short_description_embedding , target_audience_embedding , problem_solved_embedding , benefits_embedding , industry_applications_embedding , scalability_embedding, True, id)
             cursor.execute(software_sql_query,software_params)
