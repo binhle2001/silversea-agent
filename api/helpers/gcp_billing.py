@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 from .common import get_env_var
 
 # Load credentials
-credentials = service_account.Credentials.from_service_account_file("my_service_account.json")
+credentials = service_account.Credentials.from_service_account_file(get_env_var("GCP", "CREDENTIAL_PATH"))
 
 # Khởi tạo BigQuery client
 client = bigquery.Client(credentials=credentials, project=credentials.project_id)
@@ -86,7 +86,7 @@ def list_cloud_run_services(project_id, credentials, region='asia-southeast1'):
         return [{"error": str(e)}]
     
 def get_services_in_use():
-    credentials_path = "my_service_account.json"  # 🔁 Thay bằng đường dẫn thật
+    credentials_path = get_env_var("GCP", "CREDENTIAL_PATH")  # 🔁 Thay bằng đường dẫn thật
     credentials, project_id = get_project_id(credentials_path)
     sql_services = []
     for sql in list_sql_instances(project_id, credentials):

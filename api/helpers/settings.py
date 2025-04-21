@@ -1,0 +1,5 @@
+DB_NAME = "silversea-marketing-document"
+DB_USER = "postgres"
+DB_PASSWORD = "admin12345"
+DB_HOST = "34.87.93.62"
+DB_PORT = "5432"

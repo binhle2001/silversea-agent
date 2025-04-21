@@ -1,13 +1,14 @@
 import psycopg2
+from settings import *
 
 def get_db():
 # Kết nối tới database
     conn = psycopg2.connect(
-        dbname="silversea-marketing-document",
-        user="postgres",
-        password="admin12345",
-        host="34.87.93.62",
-        port="5432"
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=DB_PORT
     )
     return conn
 
