@@ -1,5 +1,5 @@
 import psycopg2
-from settings import *
+from .settings import *
 
 def get_db():
 # Kết nối tới database
